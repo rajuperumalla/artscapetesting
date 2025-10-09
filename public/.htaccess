@@ -1,0 +1,29 @@
+# Ensure correct MIME types
+<IfModule mod_mime.c>
+    AddType application/javascript .js
+    AddType text/css .css
+</IfModule>
+
+# React Router: redirect all routes to index.html
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # If file or folder doesn't exist, serve index.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^.*$ /index.html [L]
+</IfModule>
+
+# Caching rules
+<IfModule mod_headers.c>
+    # Cache static assets (safe because Vite adds file hashes)
+    <FilesMatch "\.(js|css|woff|woff2|eot|ttf|otf|svg)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    # Don’t cache HTML (always fetch fresh)
+    <FilesMatch "\.(html)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>

@@ -1,0 +1,180 @@
+import categoryimage1 from "../assets/images/category/category-image1.png"
+import categoryicon1 from "../assets/images/category/category-icon1.png"
+import categoryimage2 from "../assets/images/category/category-image2.png"
+import categoryicon2 from "../assets/images/category/category-icon2.png"
+import categoryimage3 from "../assets/images/category/category-image3.png"
+import categoryicon3 from "../assets/images/category/category-icon3.png"
+import categoryimage4 from "../assets/images/category/category-image4.png"
+import categoryicon4 from "../assets/images/category/category-icon4.png"
+import categoryimage5 from "../assets/images/category/category-image5.png"
+import categoryicon5 from "../assets/images/category/category-icon5.png"
+
+<section className="categories-section">
+        <div>
+            <h3><span></span> our categories <span></span></h3>
+        </div>
+        <div className="categories">
+            <Link to="*" className="category">
+            <img src={productimage2} alt="Center Table" />
+            <div className="category-content">
+                <h4>Center Table</h4>
+                <p>Perfect for living rooms</p>
+                <div className="price">Starting at ₹25,000</div>
+            </div>
+            </Link>
+
+            <Link to="*" className="category">
+            <img src={productimage2} alt="Coffee Table" />
+            <div className="category-content">
+                <h4>Coffee Table</h4>
+                <p>Elegant & stylish design</p>
+                <div className="price">Starting at ₹15,000</div>
+            </div>
+            </Link>
+
+            <Link to="*" className="category">
+            <img src={productimage2} alt="Dining Table" />
+            <div className="category-content">
+                <h4>Dining Table</h4>
+                <p>For family gatherings</p>
+                <div className="price">Starting at ₹50,000</div>
+            </div>
+            </Link>
+
+            <Link to="*" className="category">
+            <img src={productimage2} alt="Side Table" />
+            <div className="category-content">
+                <h4>Side Table</h4>
+                <p>Compact and versatile</p>
+                <div className="price">Starting at ₹20,000</div>
+            </div>
+            </Link>
+
+            <Link to="*" className="category">
+            <img src={productimage2} alt="Custom Table" />
+            <div className="category-content">
+                <h4>Custom Table</h4>
+                <p>Tailored to your style</p>
+                <div className="price">Starting at ₹50,000</div>
+            </div>
+            </Link>
+        </div>
+        </section>
+
+
+
+
+
+
+// .categories-section{
+//     height: 93vh;
+//     margin: 100px 0px 40px;
+//     width: 100%;
+//     .categories{
+//         display: flex;
+//         justify-content: space-evenly;
+        
+//     }
+// }
+
+.categories-section {
+  padding: 60px 40px;
+  text-align: center;
+  background: #111; /* dark elegant background */
+}
+
+.categories-section h3 {
+  font-size: 28px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.category {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.category img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.category:hover img {
+  transform: scale(1.05);
+}
+
+.category::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  z-index: 1;
+}
+
+.category-content {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.category h4 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.category p {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.category .price {
+  font-size: 16px;
+  font-weight: 400;
+   /* gold color for price */
+}
+
+/* Hover effect */
+.category:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+}
