@@ -6,10 +6,11 @@
         width: 100%;
         height: calc(100vh - 65px); /* full screen */
         // overflow: hidden;
-        display: flex;
+        // display: flex;
         align-items: center;
         justify-content: center;
         justify-items: center;
+        text-align: center;
         @media (max-width: 576px){
             align-items:baseline;
             height: auto;
@@ -25,19 +26,19 @@
         }
         
         .banner-content {
-            position: absolute;
+            position: relative;
             top: 65px;
             left: 10%;
             color: white;
             z-index: 2;
             width: 80%;
-            height: calc(100vh - 65px);
+            // height: calc(100vh - 65px);
             animation: fadeSlide 9s ease-in infinite;
             overflow: hidden;
             text-align: center;
             align-content: center;
             @media (max-width: 576px){
-               display: none;
+            //    display: none;
             }
 
             @keyframes fadeSlide {

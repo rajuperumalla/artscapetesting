@@ -9,7 +9,7 @@ import brand3 from "../assets/images/brand/brand3.png"
 import brand4 from "../assets/images/brand/brand4.png"
 import brand5 from "../assets/images/brand/brand5.png"
 import brand6 from "../assets/images/brand/brand6.png"
-import landingvideo from "../assets/videos/banner2.mp4"
+import landingvideo from "../assets/videos/banner.mp4"
 import side_table from "../assets/images/products/side_table.jpg"
 import play_area from "../assets/images/play_area.jpg"
 import diamond_front_view from "../assets/images/diamond_front_view.jpg"
@@ -37,10 +37,12 @@ const Home = () => {
     <>
         <div className="home">
             <section className="banner">
-                <video className="banner-video" src={landingvideo} ref={videoRef} autoPlay muted loop playsInline preload="metadata" />
+                <video className="banner-video" ref={videoRef} autoPlay muted loop playsInline preload="auto">
+                    <source src={landingvideo} />
+                </video>
                 <div className="banner-content">
-                    <div className="banner-tag">Elevate your interiors<br/> with <span>ArtScape</span></div>
-                    <p className="banner-text">our kinetic sand tables blend decor and mindfulness with seamless elegances<br/>experience the art in motion, crafted to relax and calm.</p>
+                    <div className="banner-tag">Discover ArtFul Living<br/> with <span>ArtScape</span></div>
+                    <p className="banner-text">our kinetic sand art furnitures blend decor and mindfulness with seamless elegances<br/>experience the art in motion, crafted to relax and calm.</p>
                 </div>
             </section>
 
