@@ -14,6 +14,7 @@ import side_table from "../assets/images/products/side_table.jpg"
 import play_area from "../assets/images/play_area.jpg"
 import diamond_front_view from "../assets/images/diamond_front_view.jpg"
 import diamond_top_view from "../assets/images/diamond_top_view.jpg"
+import products_video from "../assets/videos/Landing_video.mp4"
 
 const Home = () => {
 
@@ -155,7 +156,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-
+                    
                     <div className="stats-section">
                         <div className="stats-container">
                             <div>
@@ -173,7 +174,9 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-
+                <div>
+                    <video className="products_video" src={products_video} autoPlay muted loop playsInline preload="auto"/>
+                </div>
                 <section className="section3">
                     <div className="section3-left">
                         <img src={play_area} alt="image"/>
