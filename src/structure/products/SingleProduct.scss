@@ -1,0 +1,314 @@
+
+/* MAIN PAGE LAYOUT */
+.page {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    // width: 100%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* LEFT SIDE */
+.left-section {
+    width: 470px;
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+}
+
+.thumbnail-row{
+    display: flex;
+     justify-content: space-evenly;
+     overflow-x: scroll;
+     scrollbar-width: none;
+
+}
+.thumbnail-row::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.thumbnail-image{
+    height: 80px;
+    width: 80px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+
+// .main-image {
+//     width: 100%;
+//     border-radius: 20px;
+//     margin-bottom: 20px;
+//     height: 100vh;   /* IMPORTANT */
+// }
+.main-image {
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    height: auto;   /* FIX */
+    max-height: 600px; /* optional: control size */
+    object-fit: cover;
+}
+
+
+/* RIGHT SIDE */
+.right-section {
+    width: 660px;
+}
+
+.title {
+    margin: 0 0;
+    font-size: 36px;
+}
+
+.stars {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.review-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+// varients box
+.variants h2 {
+//   font-size: 14px;
+  font-style: bold;
+  letter-spacing: 2px;
+  color: #d1bc9f;
+  margin-bottom: 10px;
+}
+
+.variant-list {
+  display: flex;
+  gap: 15px;
+}
+
+.variant-box {
+  display: flex;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:transparent;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor:pointer;
+  border: 1px solid #d1bc9f;
+  transition: 0.2s ease;
+}
+
+.variant-box:hover {
+    border-color: #cce4a7; /* light green border on hover */
+    box-shadow: 0 0 5px rgba(180, 230, 130, 0.5);
+
+}
+.variant-box img {
+  width: 30px;
+  height: 20px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.variant-box span {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+// /* When selected */
+// .variant-box.active {
+//   border-color: #cce4a7; /* greenish border like your sample */
+//   box-shadow: 0 0 5px rgba(180, 230, 130, 0.7);
+// }
+
+
+
+
+/* PRODUCT GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+
+
+
+/* BIG ADD TO CART BUTTON */
+.big-contac-btn {
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    background: #d1bc9f;
+   border: 1px solid #dcdcdc;
+    border-radius: 14px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+
+.big-contac-btn:hover{
+    background-color:  transparent;
+    color:#d1bc9f;
+     border-color: #cce4a7; /* light green border on hover */
+    box-shadow: 0 0 5px rgba(180, 230, 130, 0.5);
+}
+
+/* SHOWCASE IMAGES */
+/* .showcase {
+    display: flex;
+    padding: 30px;
+}
+
+.showcase img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-right: 30px;
+} */
+.auto-scroll {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.scroll-content {
+    display: flex;
+    gap: 30px;
+    animation: scroll 20s linear infinite;
+}
+
+.scroll-content img {
+    width: 350px;
+    height: 300px;
+    object-fit: contain;
+    margin: 30px;
+}
+
+/* benifits */
+.beniftsbar {
+    height:400px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #cfc2b034;
+    margin:auto;
+    color: white;
+}
+.beniftsbar span {
+    height: 100%;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Animation */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+/* ----------------------------- */
+/*          RESPONSIVE           */
+/* ----------------------------- */
+
+/* TABLETS */
+@media (max-width: 1024px) {
+    .page {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .left-section {
+        width: 100%;
+        position: relative;
+        top: 0;
+    }
+
+    .right-section {
+        width: 100%;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    }
+
+    .main-image {
+        height: auto;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .title {
+        font-size: 28px;
+    }
+
+    .stars {
+        font-size: 16px;
+    }
+
+    .review-box {
+        font-size: 16px;
+    }
+
+    .product-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);  /* 2 per row */
+}
+
+/* Larger screens (desktop) — still 2 per row OR change to 4 per row if you want */
+@media (min-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 260px); /* 2 per row exactly like your design */
+    justify-content: center;
+  }
+}
+    .product-box {
+        padding: 15px;
+    }
+
+    .product-box img {
+        width: 100px;
+        height: 80px;
+    }
+
+    .big-contac-btn {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .showcase img {
+        width: 100px;
+        height: 70px;
+    }
+}
+ 
+/* Container for all feature items */
+/* Container for all feature items - Keeps them horizontal */
+
+
+/* Styling for the icon */
+.icon-style {
+    font-size: 32px; /* Increased size to be prominent */
+    color: #d1bc9f; /* Light gold/tan color */
+    margin-bottom: 8px; /* Adds space between the icon and the text */
+}

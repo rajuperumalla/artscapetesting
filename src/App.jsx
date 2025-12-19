@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Header from './structure/Header'
 import Home from './structure/Home'
 import Footer from './structure/Footer'
-import Products from './components/Products';
+import Products from './structure/products/Products';
+import SingleProduct from "./structure/products/SingleProduct";
 import Pagenotfound from './components/Pagenotfound';
 import ScrollToTop from "./structure/ScrollToTop";
 
@@ -17,6 +18,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="products" element={<Products />} />
+          <Route path="/products/:slug" element={<SingleProduct/>} />
           <Route path="aboutUs" element={<Pagenotfound/>} />
           <Route path="gallery" element={<Pagenotfound/>} />
           <Route path="contactUs"  element={<Pagenotfound/>} />
