@@ -362,13 +362,7 @@
 
             @media (max-width: 1024px) {
                 grid-template-columns: 1fr;
-                gap: 3rem;
-                padding: 4rem 0; // Reduced global padding
-            }
-
-            @media (max-width: 480px) {
-                padding: 3rem 0; // Compact mobile padding
-                gap: 2rem;
+                gap: 5rem;
             }
 
             .section3-left {
@@ -380,11 +374,6 @@
                 box-shadow:
                     20px 20px 40px $shadow-dark,
                     -20px -20px 40px $shadow-light;
-
-                @media (max-width: 480px) {
-                    padding: 1.5rem; // Tighter padding for mobile card
-                    border-radius: 30px;
-                }
 
                 img {
                     width: 100%;
@@ -399,21 +388,12 @@
                         color: $gold-primary;
                         margin-bottom: 1.5rem;
                         font-weight: 700;
-
-                        @media (max-width: 480px) {
-                            font-size: 2rem; // readable mobile title
-                            margin-bottom: 1rem;
-                        }
                     }
 
                     p {
                         font-size: 1.1rem;
                         color: $text-muted;
                         line-height: 1.6;
-
-                        @media (max-width: 480px) {
-                            font-size: 0.95rem;
-                        }
                     }
                 }
             }
@@ -423,10 +403,6 @@
                 flex-direction: column;
                 gap: 3rem;
                 justify-content: center;
-
-                @media (max-width: 480px) {
-                    gap: 1.5rem; // Closer together on mobile
-                }
 
                 .view-box {
                     background: $bg-surface;
@@ -439,13 +415,6 @@
                         15px 15px 30px $shadow-dark,
                         -15px -15px 30px $shadow-light;
 
-                    // Mobile Optimization: Keep Side-by-Side (Row)
-                    @media (max-width: 600px) {
-                        padding: 1.5rem; // Compact padding
-                        gap: 1rem; // Tighter gap
-                        border-radius: 25px;
-                    }
-
                     .view__content {
                         flex: 1;
 
@@ -454,22 +423,12 @@
                             color: $gold-primary;
                             margin-bottom: 1rem;
                             font-weight: 600;
-
-                            @media (max-width: 480px) {
-                                font-size: 1.3rem; // Balanced header
-                                margin-bottom: 0.5rem;
-                            }
                         }
 
                         p {
                             font-size: 0.95rem;
                             color: $text-muted;
                             line-height: 1.5;
-
-                            @media (max-width: 480px) {
-                                font-size: 0.85rem; // Compact text
-                                line-height: 1.4;
-                            }
                         }
                     }
 
@@ -479,17 +438,36 @@
                         border-radius: 20px;
                         object-fit: cover;
                         box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.5);
-                        flex-shrink: 0; // Prevent squishing
 
-                        @media (max-width: 600px) {
-                            width: 100px; // Fixed compact width for mobile
+                        @media (max-width: 480px) {
+                            width: 100px;
                             height: 80px;
-                            border-radius: 15px;
+                        }
+                    }
+
+                    @media (max-width: 600px) {
+                        flex-direction: column-reverse; // Image on top for mobile cards
+                        text-align: center;
+                        padding: 2rem;
+                        gap: 1.5rem;
+
+                        .view__content {
+                            h3 {
+                                font-size: 1.5rem;
+                                margin-bottom: 0.5rem;
+                            }
+
+                            p {
+                                font-size: 1rem;
+                            }
                         }
 
-                        @media (max-width: 360px) {
-                            width: 80px; // Very small screens
-                            height: 65px;
+                        img {
+                            width: 100%; // Full width of card
+                            height: 200px; // Substantial height
+                            border-radius: 25px;
+                            margin-bottom: 0.5rem;
+                            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
                         }
                     }
                 }
