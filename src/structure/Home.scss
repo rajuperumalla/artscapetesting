@@ -287,11 +287,23 @@
                     20px 20px 50px $shadow-dark,
                     -20px -20px 50px $shadow-light;
 
+                @media (max-width: 768px) {
+                    padding: 2rem 1.5rem; // Reduced padding for mobile
+                    border-radius: 30px;
+                    margin-top: 4rem;
+                }
+
                 .stats-container {
                     display: flex;
                     justify-content: space-around;
                     flex-wrap: wrap;
                     gap: 3rem;
+
+                    @media (max-width: 768px) {
+                        flex-direction: column; // Stack vertically on mobile
+                        gap: 2rem;
+                        align-items: center;
+                    }
 
                     .stat-item {
                         text-align: center;
@@ -304,12 +316,17 @@
                             text-shadow:
                                 3px 3px 6px rgba(0, 0, 0, 0.6),
                                 -1px -1px 1px rgba(255, 255, 255, 0.1);
+
+                            @media (max-width: 768px) {
+                                font-size: 3rem; // Smaller font on mobile
+                            }
                         }
 
                         .stat-label {
                             text-transform: uppercase;
                             letter-spacing: 0.2em;
                             color: $text-muted;
+                            font-size: 1rem; // Ensure readable size
                         }
                     }
                 }
