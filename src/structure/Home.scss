@@ -366,7 +366,7 @@
             }
 
             @media (max-width: 768px) {
-                padding: 4rem 0;
+                padding: 4rem 0; // Reduced padding for mobile
                 gap: 3rem;
             }
 
@@ -381,8 +381,8 @@
                     -20px -20px 40px $shadow-light;
 
                 @media (max-width: 768px) {
-                    padding: 2rem;
                     border-radius: 30px;
+                    padding: 2rem;
                 }
 
                 img {
@@ -390,6 +390,11 @@
                     border-radius: 30px;
                     margin-bottom: 2.5rem;
                     object-fit: cover;
+
+                    @media (max-width: 768px) {
+                        border-radius: 20px;
+                        margin-bottom: 1.5rem;
+                    }
                 }
 
                 .content {
@@ -400,7 +405,7 @@
                         font-weight: 700;
 
                         @media (max-width: 768px) {
-                            font-size: 2rem;
+                            font-size: 2rem; // Larger for mobile readability
                             margin-bottom: 1rem;
                             text-align: center;
                         }
@@ -413,8 +418,8 @@
 
                         @media (max-width: 768px) {
                             font-size: 1rem;
-                            text-align: center;
                             line-height: 1.7;
+                            text-align: center;
                         }
                     }
                 }
@@ -441,6 +446,15 @@
                         15px 15px 30px $shadow-dark,
                         -15px -15px 30px $shadow-light;
 
+                    // Mobile: Complete vertical card redesign
+                    @media (max-width: 768px) {
+                        flex-direction: column;
+                        text-align: center;
+                        padding: 2rem 1.5rem;
+                        border-radius: 25px;
+                        gap: 1.5rem;
+                    }
+
                     .view__content {
                         flex: 1;
 
@@ -449,12 +463,40 @@
                             color: $gold-primary;
                             margin-bottom: 1rem;
                             font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.8rem;
+
+                            // Icon styling (if added via JSX)
+                            svg,
+                            i {
+                                font-size: 1.5rem;
+                                color: $gold-light;
+                            }
+
+                            @media (max-width: 768px) {
+                                font-size: 1.5rem; // Larger heading
+                                flex-direction: column;
+                                gap: 0.5rem;
+                                margin-bottom: 1.2rem;
+
+                                svg,
+                                i {
+                                    font-size: 2rem; // Prominent icon
+                                }
+                            }
                         }
 
                         p {
                             font-size: 0.95rem;
                             color: $text-muted;
                             line-height: 1.5;
+
+                            @media (max-width: 768px) {
+                                font-size: 0.95rem;
+                                line-height: 1.7;
+                                margin-top: 1rem; // Space after image on mobile
+                            }
                         }
                     }
 
@@ -465,43 +507,35 @@
                         object-fit: cover;
                         box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.5);
 
+                        @media (max-width: 768px) {
+                            width: 100%; // Full width image
+                            height: 200px; // Taller, more prominent
+                            max-width: 400px; // Constrain on larger mobiles
+                            border-radius: 15px;
+                            order: 2; // Image after heading, before description
+                        }
+
                         @media (max-width: 480px) {
-                            width: 100px;
-                            height: 80px;
+                            height: 180px;
                         }
                     }
 
+                    // Ensure proper ordering on mobile: h3 -> img -> p
                     @media (max-width: 768px) {
-                        flex-direction: column;
-                        padding: 2.5rem 2rem;
-                        border-radius: 30px;
-                        gap: 1.5rem;
-
                         .view__content {
                             order: 1;
-                            text-align: center;
 
                             h3 {
-                                font-size: 1.8rem;
-                                margin-bottom: 0.8rem;
-                                letter-spacing: 0.5px;
+                                order: 1;
                             }
 
                             p {
-                                font-size: 1.05rem;
-                                line-height: 1.7;
-                                color: $text-main;
+                                order: 3;
                             }
                         }
 
                         img {
                             order: 2;
-                            width: 100%;
-                            height: 220px;
-                            border-radius: 25px;
-                            box-shadow:
-                                inset 2px 2px 5px rgba(0, 0, 0, 0.3),
-                                0 4px 12px rgba(0, 0, 0, 0.2);
                         }
                     }
                 }
