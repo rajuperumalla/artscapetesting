@@ -1,20 +1,20 @@
-@use "./colors.scss" as color;
+@use "./neumorphism.scss" as *;
+@use "../index.scss" as utility; // Implied usage of utility classes
 
-.home{
-    
+.home {
+    padding-top: 80px; // Spacing for fixed header
+
     .banner {
         position: relative;
         width: 100%;
-        height: calc(100vh - 65px); /* full screen */
+        height: 90vh; // slightly less than full for scroll hint
         display: flex;
-        flex-direction: column;      /* stack items vertically */
-        justify-content: center;     /* center vertically */
-        align-items: center;  
-        justify-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        @media (max-width: 576px){
-            height: auto;
-        }
+        overflow: hidden;
+        background: $bg-body;
 
         .banner-video {
             position: absolute;
@@ -22,407 +22,471 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* video covers background */
-            z-index: 1; 
-            @media (max-width: 576px) {
-                position:static;
-                height: 100%;
-                object-fit: contain;   /* ensure video is visible */
-            }
+            object-fit: cover;
+            opacity: 0.6; // Increased opacity as requested to make video appear
+            z-index: 1;
+            filter: grayscale(100%) sepia(10%) contrast(1.1);
         }
-        
+
         .banner-content {
             position: relative;
-            color: white;
             z-index: 2;
-            width: 80%;
-            animation: fadeSlide 9s ease-in infinite;
-            overflow: hidden;
-            text-align: center;
-            align-content: center;
-            @media (max-width: 576px){
-               display: none;
+            width: 90%;
+            max-width: 1000px;
+            padding: 0;
+            background: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+            border: none;
+
+            .banner-tag {
+                font-size: 4.5rem;
+                margin-bottom: 2rem;
+                line-height: 1.1;
+                color: $text-main;
+                text-shadow: 2px 2px 30px rgba(0, 0, 0, 1);
+
+                // Sequential Fade Out
+                animation: fadeOutSequential 1.5s ease-in forwards;
+                animation-delay: 3s;
+
+                span {
+                    display: block;
+                    font-size: 5.5rem;
+                    color: $gold-primary;
+                    font-weight: 700;
+                    text-shadow:
+                        3px 3px 6px rgba(0, 0, 0, 0.8),
+                        -1px -1px 1px rgba(255, 255, 255, 0.2);
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 2.5rem;
+
+                    span {
+                        font-size: 3.2rem;
+                    }
+                }
             }
 
-            @keyframes fadeSlide {
-                0% {
-                    opacity: 0;
-                    transform: translateX(-40px);
-                }
-                40% {
-                    opacity: 0;
-                    transform: translateX(-40px);
-                }
-                50% {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-                70% {           
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-                80% {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translateX(40px);
-                }
-            }
+            .banner-text {
+                font-size: 1.5rem;
+                letter-spacing: 0.2em;
+                color: $text-muted;
+                margin-top: 2rem;
+                text-shadow: 1px 1px 15px rgba(0, 0, 0, 1);
 
-            .banner-tag{
-                font-size: 2.5rem;
-                text-shadow: #000 3px 2px;
-                line-height: 2.7rem;
-                @media (max-width:576px){
-                    font-size: 2rem;
-                }
-                span{
-                    font-size: 3rem;
-                    @media (max-width:576px){ font-size: 2.5rem; }
+                // Sequential Fade Out (After tag)
+                animation: fadeOutSequential 1.5s ease-in forwards;
+                animation-delay: 4.5s;
+
+                @media (max-width: 768px) {
+                    font-size: 1.1rem;
                 }
             }
-            
-            .banner-text{
-                text-shadow: #000 2px 2px;
-                font-size: 1.3rem;
-            }    
         }
     }
 
-    // #############################################################
+    .sections-container {
+        padding: 0 5%;
 
-    .sections-container{
-        background-color: #0a0c10;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        
-        .features-section{
-            padding-top: 4rem;
-            padding-bottom: 1rem;
-            @media (max-width: 576px){
-              padding-top: 2rem;
-            }
+        /* FEATURES SECTION */
+        .features-section {
+            padding: 8rem 0;
 
-            .features-header{
-                text-align: center; 
-                margin-bottom: 4rem;
-                @media (max-width: 576px){
-                    margin-bottom: 2rem;
-                }
+            .features-header {
+                text-align: center;
+                margin-bottom: 6rem;
 
-                .features-title{
-                    margin: 1rem 0;
+                .features-title {
                     font-size: 3rem;
-                    font-weight: 700;
-                    @media (max-width: 576px){
-                        font-size: 2rem;
-                    }
 
                     .features-tag {
-                        color: color.$primary;
-                        font-size: 3rem;
-                        font-weight: 700;
-                        margin-top: 1.2rem;
-                        margin-bottom: 1.2rem;
-                        @media (max-width: 576px){
-                            font-size: 2rem;
-                            margin-top: 0.8rem;
-                            margin-bottom: 0.8rem;
-                        }
+                        display: block;
+                        font-size: 1.5rem;
+                        color: $gold-light;
+                        margin-top: 1rem;
+                        font-weight: 400;
                     }
                 }
-                .features-description{
-                    font-size: 1rem;
-                    color: color.$primary;
-                    max-width: 48rem;
-                    margin: auto;
-                }
-            } 
-            
-            .features{
+            }
+
+            .features {
                 display: grid;
-                gap: 2rem;
-                margin-bottom: 3rem;
-                justify-content: center;
-                align-content: center;
-                justify-items: center;
-                @media (max-width: 576px){
-                    gap: 1.3rem;
-                    margin-bottom: 2rem;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2.5rem;
+
+                @media (max-width: 1200px) {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 3rem;
                 }
-                @media (min-width: 576px) {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                }
-                @media (min-width: 1024px) {
-                    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+                @media (max-width: 600px) {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
                 }
 
                 .feature {
+                    background: $bg-surface;
+                    border-radius: 30px;
+                    padding: 3rem 2rem;
                     text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    box-shadow:
+                        15px 15px 30px $shadow-dark,
+                        -15px -15px 30px $shadow-light;
+                    transition: transform 0.4s ease;
 
-                    .feature-icon{
-                        width: 4rem;
-                        height: 4rem;
-                        background-color: color.$primary;
-                        border-radius: 1rem;
-                        margin-bottom: 1rem;
+                    &:hover {
+                        transform: translateY(-10px);
+                    }
+
+                    .feature-icon {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        margin-bottom: 2rem;
                         display: flex;
-                        justify-content: center;
                         align-items: center;
-                        @media (max-width: 576px){
-                            margin-bottom: 0.5rem
-                        }
+                        justify-content: center;
+                        color: $gold-primary;
+                        // Pressed Neumorphism for the Icon Circle
+                        background: $bg-surface;
+                        box-shadow:
+                            inset 6px 6px 12px $shadow-dark,
+                            inset -6px -6px 12px $shadow-light;
 
-                        .feature-i{
-                            background-color: black;
-                            border-radius: 50%;
-                            width: 2rem;
-                            height: 2rem;
-                        }
-                        
-                    } 
-                    .feature-tag{
-                        font-size: 1.4rem;
-                        font-weight: 500;
-                        color: white;
-                        width: 90%;
-                        margin: 0.3rem 0;
-                        @media (max-width: 576px){
-                            margin: 0.1rem 0;
+                        .feature-i {
+                            font-size: 2.2rem;
+                            color: $gold-primary;
+                            filter: drop-shadow(0px 0px 8px rgba($gold-primary, 0.3));
+                            transition: all 0.3s ease;
                         }
                     }
-                    .feature-desc{
-                        opacity: 0.8;
-                        font-size: 0.8rem;
-                        max-width: 18rem;
-                        margin: 0.5rem 0;
+
+                    &:hover .feature-icon .feature-i {
+                        transform: scale(1.1);
+                        color: $gold-light;
+                        filter: drop-shadow(0px 0px 12px rgba($gold-primary, 0.6));
+                    }
+
+                    .feature-tag {
+                        font-size: 1.5rem;
+                        color: $gold-primary;
+                        margin-bottom: 1rem;
+                        font-weight: 600;
+                    }
+
+                    .feature-desc {
+                        font-size: 1rem;
+                        color: $text-muted;
                     }
                 }
             }
         }
 
-        //################################################################
+        /* HOW IT WORKS */
+        .how-it-works {
+            padding: 6rem 0;
 
-        .how-it-works{
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-
-            .how-it-works-container{
+            .how-it-works-container {
                 display: grid;
-                gap: 1rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
                 align-items: center;
-                justify-items: center;
 
-                @media (min-width: 800px) {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                @media(max-width: 900px) {
+                    grid-template-columns: 1fr;
                 }
 
+                .image-container {
+                    padding: 20px;
+                    background: $bg-surface;
+                    border-radius: 40px;
+                    box-shadow:
+                        20px 20px 40px $shadow-dark,
+                        -20px -20px 40px $shadow-light;
 
-                .how-it-works-image{
-                    width: 80%;
-                    height: auto;
-                    border-radius: 1rem;
+                    .how-it-works-image {
+                        width: 100%;
+                        border-radius: 30px;
+                        display: block;
+                        box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+                    }
                 }
 
-                .how-it-works-content{
-                    .how-it-works-title{
-                        font-weight: 700;
-                        margin-bottom: 1rem;
-                        font-size: 1.5rem;
-                        line-height: 2rem;
+                .how-it-works-content {
+                    .how-it-works-title {
+                        font-size: 2.5rem;
+                        margin-bottom: 2rem;
                     }
-                    .how-it-works-desc{
-                        color: #a8a89f;
-                        font-weight: 400;
-                        line-height: 1.625;
-                        font-size: 0.9rem;
+
+                    .how-it-works-desc {
+                        font-size: 1.1rem;
+                        margin-bottom: 3rem;
                     }
-                    .how-it-works-steps{
-                        margin-top: 2rem;
-                        .how-it-works-step{
-                            margin-top: 1.3rem;
+
+                    .how-it-works-steps {
+                        .how-it-works-step {
                             display: flex;
-                            gap: 1rem;
+                            gap: 1.5rem;
+                            margin-bottom: 2rem;
 
-                            .steps{
-                                width: 2rem;
-                                height: 2rem;
-                                background-color: color.$primary;
+                            .steps {
+                                width: 50px;
+                                height: 50px;
+                                flex-shrink: 0;
                                 border-radius: 50%;
                                 display: flex;
-                                align-items: center;
                                 justify-content: center;
-                                flex-shrink: 0;
+                                align-items: center;
+                                font-weight: bold;
+                                color: $gold-primary;
+                                background: $bg-surface;
+                                box-shadow:
+                                    inset 3px 3px 6px $shadow-dark,
+                                    inset -3px -3px 6px $shadow-light;
+                            }
 
-                                .step-number{
-                                    font-size: .875rem;
-                                    line-height: 1.25rem;
-                                    font-weight: 700;
-                                    color: #000;
+                            .step-info {
+                                .step-title {
+                                    color: $text-main;
+                                    font-size: 1.2rem;
+                                    margin-bottom: 0.5rem;
+                                    font-weight: 600;
                                 }
-                            }
-                            .step-title{
-                                margin: 0.275rem 0 0;
-                                font-weight: 600;
-                                font-size: 1rem;
-                                color: #fafaf9;
-                            }
-                            .step-desc{
-                                margin: 0.75rem 0;
-                                font-size: 1rem;
-                                color: color.$primary;
-                                font-weight: 400;
-                                color: #a8a89f;
+
+                                .step-desc {
+                                    color: $text-muted;
+                                    font-size: 0.95rem;
+                                }
                             }
                         }
                     }
-                    
                 }
             }
-            .stats-section{
-                background-color: black;
-                border-radius: 1.5rem;
-                padding: 1rem 3rem;
-                margin: 4rem 0 1rem;
 
-                .stats-container{
-                    gap: 2rem;
-                    display: grid;
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                    text-align: center;
-                    
-                    @media (max-width: 576px) {
-                        grid-template-columns: repeat(1, minmax(0, 1fr));
-                    }
+            /* STATS SECTION */
+            .stats-section {
+                margin-top: 8rem;
+                padding: 4rem;
+                border-radius: 40px;
+                background: $bg-surface;
+                box-shadow:
+                    20px 20px 50px $shadow-dark,
+                    -20px -20px 50px $shadow-light;
 
-                    .stat-number{
-                        margin: 0.5rem 0;
-                        font-size: 1.6rem;
-                        line-height: 2rem;
-                        font-weight: 700;
-                        color: color.$primary;
-                    }
-                    .stat-label{
-                        font-size: 1.1rem;
+                .stats-container {
+                    display: flex;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                    gap: 3rem;
+
+                    .stat-item {
+                        text-align: center;
+
+                        .stat-number {
+                            font-size: 4rem;
+                            font-weight: 700;
+                            color: $gold-primary;
+                            margin-bottom: 1rem;
+                            text-shadow:
+                                3px 3px 6px rgba(0, 0, 0, 0.6),
+                                -1px -1px 1px rgba(255, 255, 255, 0.1);
+                        }
+
+                        .stat-label {
+                            text-transform: uppercase;
+                            letter-spacing: 0.2em;
+                            color: $text-muted;
+                        }
                     }
                 }
             }
         }
-        .products_video {
-            width: 100%;
-            height: auto;
-            object-fit: cover; // or contain depending on what you want
-            display: block;
+
+        .video-section {
+            padding: 8rem 0;
+
+            .video-container {
+                width: 100%;
+                border-radius: 40px;
+                overflow: hidden;
+                background: $bg-surface;
+                padding: 20px;
+                box-shadow:
+                    25px 25px 50px $shadow-dark,
+                    -25px -25px 50px $shadow-light;
+
+                video {
+                    width: 100%;
+                    border-radius: 30px;
+                    display: block;
+                }
+            }
         }
-        .section3{
-            margin-top: 1.2rem;
+
+        .section3 {
             display: grid;
+            grid-template-columns: 1.2fr 1fr;
             gap: 4rem;
-            padding: 2rem 1rem;
-            grid-template-columns: 1fr 1fr;
-            @media (max-width: 700px){
-                gap: 0.7rem;
+            padding: 8rem 0;
+
+            @media (max-width: 1024px) {
                 grid-template-columns: 1fr;
-                padding: 2rem 0;
+                gap: 5rem;
             }
 
-            .section3-left{
-                img {
-                    max-width: 100%;
-                    border-radius: 1rem;
-                    padding-bottom: 1.3rem;
-                }
-
-                 h2 {
-                    font-size: 2rem;
-                    margin: 0.5rem 0;
-                    color: color.$primary;
-                }
-
-                 p {
-                    color: #a8a89f;
-                    line-height: 1.5;
-                    font-size: 0.95rem;
-                }
-            }
-            .section3-right{
+            .section3-left {
+                background: $bg-surface;
+                border-radius: 45px;
+                padding: 3rem;
                 display: flex;
                 flex-direction: column;
-                gap: 4.5rem;
+                box-shadow:
+                    20px 20px 40px $shadow-dark,
+                    -20px -20px 40px $shadow-light;
 
-                @media (max-width: 576px){
-                    gap: 2rem;
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                    margin-bottom: 2.5rem;
+                    object-fit: cover;
                 }
 
-                .view-box {
-                    display: flex;
-                    gap: 1rem;
-                    // align-items: center;
-                    img {
-                        max-width: 10.8rem;
-                        height: auto;
-                        border-radius: 0.5rem;
-                        object-fit: contain;
+                .content {
+                    h2 {
+                        font-size: 3rem;
+                        color: $gold-primary;
+                        margin-bottom: 1.5rem;
+                        font-weight: 700;
                     }
+
+                    p {
+                        font-size: 1.1rem;
+                        color: $text-muted;
+                        line-height: 1.6;
+                    }
+                }
+            }
+
+            .section3-right {
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                justify-content: center;
+
+                .view-box {
+                    background: $bg-surface;
+                    border-radius: 35px;
+                    padding: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+                    box-shadow:
+                        15px 15px 30px $shadow-dark,
+                        -15px -15px 30px $shadow-light;
+
                     .view__content {
                         flex: 1;
 
                         h3 {
-                        font-size: 1.2rem;
-                        margin-bottom: 0.3rem;
-                        color: color.$primary;
+                            font-size: 1.8rem;
+                            color: $gold-primary;
+                            margin-bottom: 1rem;
+                            font-weight: 600;
                         }
 
                         p {
-                        font-size: 0.9rem;
-                        color: #a8a89f;
+                            font-size: 0.95rem;
+                            color: $text-muted;
+                            line-height: 1.5;
+                        }
+                    }
+
+                    img {
+                        width: 160px;
+                        height: 120px;
+                        border-radius: 20px;
+                        object-fit: cover;
+                        box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.5);
+
+                        @media (max-width: 480px) {
+                            width: 100px;
+                            height: 80px;
+                        }
+                    }
+
+                    @media (max-width: 600px) {
+                        flex-direction: column;
+                        text-align: center;
+
+                        img {
+                            width: 100%;
+                            height: 200px;
                         }
                     }
                 }
             }
         }
 
-    //##########################################################
-
-
-        .collabs{
+        /* COLLABS */
+        .collabs {
+            padding: 8rem 0;
             text-align: center;
-            padding-bottom: 5rem;
-            margin: 0 1rem;
-            @media (max-width: 576px){
-                margin: 3rem 0;
-            }
-            .collabs-title{
-                width: 100%;
-                color: color.$primary;
-                font-size: 2.4rem;
-                font-weight: 600;
-                margin-bottom: 3.5rem;
-            }
-            
-            
-            .brand{
-                // margin: 1rem 0;
-                padding: 0.8rem 2.5rem;
-                border: 1px rgba(255, 255, 255, 0.247) solid;
-                border-radius: 1rem;
-                @media (min-width: 850px){
-                    padding: 1rem 3.5rem;
-                }
-                @media (min-width: 1200px){
-                    padding: 1rem 5rem;
-                }
 
+            .collabs-title {
+                font-size: 2.5rem;
+                margin-bottom: 5rem;
             }
-            
+
+            .collabs-container {
+                display: flex;
+                justify-content: center;
+                gap: 3rem;
+                flex-wrap: wrap;
+
+                .brand {
+                    padding: 2rem 3rem;
+                    border-radius: 20px;
+                    background: $bg-surface;
+                    box-shadow:
+                        10px 10px 20px $shadow-dark,
+                        -10px -10px 20px $shadow-light;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        max-width: 120px;
+                        filter: grayscale(100%) opacity(0.5);
+                        transition: $transition-medium;
+                    }
+
+                    &:hover {
+                        transform: translateY(-5px);
+
+                        img {
+                            filter: grayscale(0%) opacity(1) drop-shadow(0px 0px 5px $gold-primary);
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
+@keyframes fadeOutSequential {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+        visibility: hidden;
+    }
+}

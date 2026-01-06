@@ -1,0 +1,109 @@
+@forward "./colors.scss";
+@use "./colors.scss" as *;
+
+/* Neumorphic Placeholders & Mixins */
+
+%neu-lifted {
+    background: $bg-surface;
+    border-radius: 20px;
+    box-shadow:
+        8px 8px 16px $shadow-dark,
+        -8px -8px 16px $shadow-light;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: $transition-medium;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            12px 12px 20px $shadow-dark,
+            -10px -10px 20px $shadow-light;
+    }
+}
+
+%neu-pressed {
+    background: $bg-surface;
+    border-radius: 20px;
+    box-shadow:
+        inset 6px 6px 12px $shadow-dark,
+        inset -6px -6px 12px $shadow-light;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.01);
+}
+
+%neu-button {
+    background: $bg-surface;
+    color: $gold-primary;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow:
+        6px 6px 12px $shadow-dark,
+        -6px -6px 12px $shadow-light;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: lighten($gold-primary, 10%);
+        box-shadow:
+            8px 8px 16px $shadow-dark,
+            -8px -8px 16px $shadow-light;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow:
+            inset 4px 4px 8px $shadow-dark,
+            inset -4px -4px 8px $shadow-light;
+        transform: translateY(1px);
+    }
+}
+
+%neu-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $bg-surface;
+    color: $gold-primary;
+    box-shadow:
+        5px 5px 10px $shadow-dark,
+        -5px -5px 10px $shadow-light;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        box-shadow:
+            7px 7px 14px $shadow-dark,
+            -7px -7px 14px $shadow-light;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        box-shadow:
+            inset 3px 3px 6px $shadow-dark,
+            inset -3px -3px 6px $shadow-light;
+    }
+}
+
+/* Redefine as classes for global utility usage */
+.neu-lifted {
+    @extend %neu-lifted;
+}
+
+.neu-pressed {
+    @extend %neu-pressed;
+}
+
+.neu-button {
+    @extend %neu-button;
+}
+
+.neu-icon-btn {
+    @extend %neu-icon-btn;
+}

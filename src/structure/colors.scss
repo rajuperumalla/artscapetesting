@@ -1,6 +1,30 @@
-$primary: #d1bc9f;
-$secondary:  #0f0e0e;
-$font-color: white;
-$light: #aaaaaa;
-$dark: #f3e8e8;
-$light_alpha: #aaaaaa77;
+/* Rich Neumorphism Design System - Global Colors */
+
+// Legacy compatibility variables (used by many existing components)
+$primary: #D4AF37;
+$secondary: #1E1E1E;
+$font-color: #FFFFFF;
+$light: #F4C430;
+$dark: #AA8C2C;
+$light_alpha: rgba(255, 255, 255, 0.1);
+
+// Semantic Neumorphic Variables
+$gold-primary: #D4AF37;
+$gold-light: #F4C430;
+$gold-dark: #AA8C2C;
+$text-main: #FFFFFF;
+$text-muted: #B0B0B0;
+
+// Backgrounds
+$bg-body: #1E1E1E;
+$bg-surface: #1E1E1E;
+$bg-surface-2: #252525;
+
+// Shadow Tokens (Dark Mode)
+$shadow-light: rgba(255, 255, 255, 0.08);
+$shadow-dark: rgba(0, 0, 0, 0.6);
+
+// Transitions
+$transition-fast: 0.2s ease-in-out;
+$transition-medium: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);

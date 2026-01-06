@@ -1,0 +1,197 @@
+@use "../structure/neumorphism.scss" as *;
+
+.accessories-page {
+  padding-top: 120px;
+  background: $bg-body;
+  min-height: 100vh;
+  padding-bottom: 8rem;
+}
+
+.accessories-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+
+  .accessories-header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    .accessories-heading {
+      font-size: 3.5rem;
+      color: $gold-primary;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+
+      @media (max-width: 768px) {
+        font-size: 2.2rem;
+      }
+    }
+
+    .accessories-subheading {
+      font-size: 1.1rem;
+      color: $text-muted;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Category Filter */
+  .category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 5rem;
+    padding: 0.8rem;
+    border-radius: 50px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+
+    .filter-btn {
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      border: none;
+      background: transparent;
+      color: $text-muted;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.9rem;
+
+      &:hover {
+        color: $gold-primary;
+      }
+
+      &.active {
+        background: $bg-surface;
+        color: $gold-primary;
+        box-shadow:
+          4px 4px 10px $shadow-dark,
+          -4px -4px 10px $shadow-light;
+      }
+    }
+  }
+
+  /* Grid Layout */
+  .accessories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 4rem;
+
+    .accessory-tile {
+      position: relative;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+
+      .accessory-badge {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: $gold-dark;
+        background: $bg-surface;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        box-shadow: inset 2px 2px 4px $shadow-dark;
+      }
+
+      .image-wrapper {
+        aspect-ratio: 1/1;
+        width: 100%;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        overflow: hidden;
+
+        .accessory-image {
+          width: 70%;
+          height: 70%;
+          object-fit: contain;
+          transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+      }
+
+      &:hover .accessory-image {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .accessory-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .accessory-name {
+          font-size: 1.4rem;
+          color: $text-main;
+          margin-bottom: 0.8rem;
+        }
+
+        .accessory-description {
+          font-size: 0.9rem;
+          color: $text-muted;
+          margin-bottom: 1.5rem;
+          line-height: 1.5;
+        }
+
+        .accessory-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+          margin-top: auto;
+
+          .accessory-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $gold-primary;
+          }
+
+          .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+
+            .quantity-btn {
+              background: transparent;
+              border: none;
+              color: $text-main;
+              font-size: 1.25rem;
+              cursor: pointer;
+              padding: 0 0.5rem;
+              transition: color 0.2s;
+
+              &:hover {
+                color: $gold-primary;
+              }
+            }
+
+            .quantity-count {
+              font-weight: 700;
+              color: $gold-primary;
+              min-width: 20px;
+              text-align: center;
+            }
+          }
+        }
+
+        .buy-now-btn {
+          width: 100%;
+          padding: 1.1rem;
+          font-weight: 700;
+          border-radius: 15px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

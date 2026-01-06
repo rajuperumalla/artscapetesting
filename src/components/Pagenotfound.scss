@@ -1,11 +1,66 @@
-.error{
-    height: 15rem;
-    text-align: center;
+@use "../structure/colors.scss" as *;
+
+.error {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    align-content: center;
-    
-    h1{
-        font-size: 2rem;
-        color: rgba(255, 255, 255, 0.8);
+    background: $bg-body;
+    padding: 2rem;
+    text-align: center;
+
+    h1 {
+        font-size: 6rem;
+        color: $gold-primary;
+        margin-bottom: 2rem;
+
+        // Massive Emboss
+        text-shadow:
+            4px 4px 8px rgba(0, 0, 0, 0.8),
+            -2px -2px 4px rgba(255, 255, 255, 0.1);
+
+        background: $bg-surface;
+        padding: 3rem 6rem;
+        border-radius: 50px;
+        box-shadow:
+            20px 20px 40px $shadow-dark,
+            -20px -20px 40px $shadow-light;
+    }
+
+    p {
+        font-size: 1.5rem;
+        color: $text-muted;
+        margin-bottom: 4rem;
+    }
+
+    .back-home {
+        padding: 1.5rem 4rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: 30px;
+        background: $bg-surface;
+        color: $gold-primary;
+
+        box-shadow:
+            10px 10px 20px $shadow-dark,
+            -10px -10px 20px $shadow-light;
+        transition: 0.3s;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                15px 15px 30px $shadow-dark,
+                -15px -15px 30px $shadow-light;
+        }
+
+        &:active {
+            transform: translateY(2px);
+            box-shadow:
+                inset 4px 4px 8px $shadow-dark,
+                inset -4px -4px 8px $shadow-light;
+        }
     }
 }

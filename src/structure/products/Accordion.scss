@@ -1,113 +1,187 @@
-.accordion {
-  border-bottom: 1px solid #e5e5e593;
-  padding: 15px 0;
-  cursor: pointer;
-   &:not(.open) .accordion-content {
-    max-height: 0;            /* Collapsed state */
-  }
+@use "../neumorphism.scss" as *;
 
-  &.open .accordion-content {
-    max-height: 500px;        /* Expanded state */
+.accordion-wrapper {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.accordion-item {
+  // Each item is a separate lifted card
+  background: $bg-surface;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  box-shadow:
+    8px 8px 16px $shadow-dark,
+    -8px -8px 16px $shadow-light;
+
+  &.open {
+    // When open, maybe stay lifted or press in? 
+    // Let's keep it lifted but the content inside will handle depth
   }
 
   .accordion-header {
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 
     h3 {
-      font-size: 16px;
-      letter-spacing: 2px;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       font-weight: 600;
+      color: $text-muted;
       margin: 0;
-      color:rgba(255, 255, 255, 0.8);
+      transition: 0.3s;
     }
 
-    h3:hover {
-      color: white;
-    }
-    .arrow-icon {
-      font-size: 22px;
-      transition: transform 0.3s ease;
-      color: #514d4d;
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $bg-surface;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // Default flat/lifted
+      box-shadow:
+        5px 5px 10px $shadow-dark,
+        -5px -5px 10px $shadow-light;
+      transition: 0.3s;
 
-      &.rotate {
-        transform: rotate(180deg);
+      .arrow-icon {
+        color: $gold-primary;
+        transition: transform 0.4s ease;
       }
+
+      &.active {
+        // Press the button when active
+        box-shadow:
+          inset 3px 3px 6px $shadow-dark,
+          inset -3px -3px 6px $shadow-light;
+
+        .arrow-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &:hover h3 {
+      color: $gold-primary;
     }
   }
 
   .accordion-content {
-    margin-top: 10px;
-    max-height: 500px;        /* Set a max height */
-    overflow: hidden;         /* Hide overflow */
-    transition: max-height 0.4s ease-in-out;  /* Slide animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
 
-    p {
-      font-size: 15px;
-      color: #d1bc9f;
-      margin: 0;
-      line-height: 1.5;
+    &.expanded {
+      max-height: 800px;
+    }
+
+    .content-inner {
+      padding: 0 2rem 2rem;
+
+      // Inner text/list style
+      .simple-text {
+        color: $text-muted;
+        line-height: 1.6;
+      }
+
+      .specs-list {
+        display: grid;
+        gap: 1rem;
+        padding: 0;
+
+        li {
+          // Each spec item in a small well (pressed)
+          background: $bg-surface;
+          padding: 1rem;
+          border-radius: 12px;
+          box-shadow:
+            inset 3px 3px 6px $shadow-dark,
+            inset -3px -3px 6px $shadow-light;
+
+          span {
+            color: $text-main;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+          }
+
+          &::before {
+            content: '•';
+            color: $gold-primary;
+            margin-right: 0.5rem;
+          }
+        }
+      }
     }
   }
 }
 
-/* Styles for the SPECS list */
-.accordion-content .specs-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.accordion-content .specs-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  font-size: 15px;
-  color: #d1bc9f; /* dark text for clarity like the reference */
-  line-height: 1.4;
-}
-.accordion-content .specs-list li:hover{
-  cursor: text;
-}
-.accordion-content .specs-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #d1bc9f; /* bullet color */
-  font-size: 18px;
-  line-height: 1;
-}
-/* Styles for the SPECS list END HERE  */
-.accordion-container {
-  width: 100%;
-}
+.lifestyle-warranty-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 2.5rem;
+  border-radius: 30px;
+  background: $bg-surface;
+  // Lifted Container
+  box-shadow:
+    10px 10px 20px $shadow-dark,
+    -10px -10px 20px $shadow-light;
 
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-.warranty-bar {
-    display: flex; 
-    justify-content: space-around; 
-    margin-top: 20px;
-    background-color: transparent; /* Dark background color */
-    padding: 20px 0;
-    border: 1px solid #dcdcdc;
-    border-radius: 20px;
-}
+  .warranty-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 
-/* Individual Feature Item - KEY CHANGES HERE */
-.feature-item {
-    display: flex; 
-    flex-direction: column; /* THIS is the key change: stacks children vertically */
-    align-items: center; /* Centers the icon and text horizontally within the item */
-    text-align: center; /* Centers the multi-line text */
-    max-width: 30%; 
-    padding: 0 10px;
-}
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: $gold-primary;
+      // Pressed well for icons
+      background: $bg-surface;
+      box-shadow:
+        inset 4px 4px 8px $shadow-dark,
+        inset -4px -4px 8px $shadow-light;
+    }
 
-/* Styling for the text */
-.feature-text p {
-    color: #d1bc9f; /* Light text color */
-    font-size: 14px;
-    margin: 0; 
-    line-height: 1.3;
+    .w-text {
+      display: flex;
+      flex-direction: column;
+
+      .w-val {
+        font-weight: 700;
+        color: $text-main;
+        font-size: 1.1rem;
+      }
+
+      .w-label {
+        font-size: 0.8rem;
+        color: $text-muted;
+        text-transform: uppercase;
+      }
+    }
+  }
 }

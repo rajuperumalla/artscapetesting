@@ -1,81 +1,147 @@
-@use "./colors.scss" as color;
+@use "./neumorphism.scss" as *;
 
-.footer{
-    padding: 0rem 3rem 6rem;
+.footer {
+    padding: 6rem 5% 2rem;
+    background: $bg-surface-2; // Slightly lighter for contrast
+    margin-top: auto;
+    position: relative;
+    z-index: 10;
 
-    .footer-container{
-        margin-top: 2rem;
+    // Top border line - etched effect
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 -10px 20px -10px rgba(0, 0, 0, 0.5);
+
+    .footer-container {
         display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 1.5rem;
-        @media (min-width: 1024px) {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-        
-        .footer-col{
-            
-            .footertitle{
-                margin-top: 0;
-                color: color.$primary;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 5rem;
+
+        .footer-col {
+            .footertitle {
                 font-size: 1.2rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
+                color: $gold-primary;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                margin-bottom: 2rem;
+                // Text embossing
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
             }
-            .footer-links{
+
+            .footer-links {
                 display: flex;
                 flex-direction: column;
-                gap: 0.8rem;
+                gap: 1.2rem;
 
-                .footer-link{
-                    color: rgba(255, 255, 255, 0.8);
-                    width: 8rem;
-                    font-size: 0.9rem;
-                    font-weight: 400;
-                    align-items: center;
+                .footer-link {
                     display: flex;
-                    
-                    div{
-                        display: block;
-                        width: 0.4rem;
-                        height: 0.4rem;
-                        border: 1px solid white;
+                    align-items: center;
+                    gap: 1rem;
+                    color: $text-muted;
+                    font-size: 0.95rem;
+                    transition: $transition-fast;
+
+                    // The bullet point - pressed
+                    div {
+                        width: 10px;
+                        height: 10px;
                         border-radius: 50%;
-                        margin-right: 0.5rem;
+                        background: $bg-surface;
+                        box-shadow:
+                            inset 1px 1px 2px $shadow-dark,
+                            inset -1px -1px 2px $shadow-light;
+                        transition: all 0.3s ease;
                     }
-                }
 
-                .footer-link:hover{
-                    color: white;
-                    font-weight: 500;
-                    div{
-                        background-color: color.$primary;
+                    &:hover {
+                        color: $gold-light;
+                        transform: translateX(5px);
+
+                        div {
+                            background: $gold-primary; // Light up
+                            box-shadow: 0 0 10px $gold-primary;
+                        }
                     }
                 }
             }
 
-            .social{
-                a{
-                    margin: 0 1rem 0 0;
-                    color: rgba(255, 255, 255, 0.8);
+            .social {
+                display: flex;
+                gap: 1.5rem;
+
+                a {
+                    // Neumorphic Icon Buttons
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: $bg-surface;
+                    color: $gold-primary;
+                    font-size: 1.2rem;
+
+                    box-shadow:
+                        6px 6px 12px $shadow-dark,
+                        -6px -6px 12px $shadow-light;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        transform: translateY(-3px);
+                        color: #fff;
+                        box-shadow:
+                            8px 8px 16px $shadow-dark,
+                            -8px -8px 16px $shadow-light;
+                    }
+
+                    &:active {
+                        box-shadow:
+                            inset 3px 3px 6px $shadow-dark,
+                            inset -3px -3px 6px $shadow-light;
+                        transform: translateY(0);
+                    }
                 }
             }
-            address{
+
+            address {
                 font-style: normal;
-                opacity: 0.8;
+                color: $text-muted;
+                line-height: 1.8;
             }
         }
     }
-    .footer-container2{
-        margin: 2rem 0;
+
+    .footer-container2 {
         display: flex;
         justify-content: space-between;
-        .artscape_logo{
-            width: 150px;
-            height: auto;
-        }
-        .ota_logo{
-            width: 100px;
+        align-items: center;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.02);
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .artscape_logo,
+        .ota_logo {
+            // Add a subtle container for logos
+            padding: 1rem;
+            background: $bg-surface;
+            border-radius: 20px;
+            box-shadow:
+                5px 5px 10px $shadow-dark,
+                -5px -5px 10px $shadow-light;
+
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.3s;
+
+            &:hover {
+                filter: grayscale(0%);
+                opacity: 1;
+                transform: scale(1.05);
+            }
         }
     }
-    
 }

@@ -1,0 +1,71 @@
+/* Global styles */
+/* Base slide styles */
+[class^="number-slide"],
+[class*=" number-slide"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* Image styles */
+.carousel__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Layout */
+.wrapper {
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 3D perspective */
+.scene {
+  width: 260px;
+  height: 200px;
+  perspective: 1000px;
+  position: relative;
+}
+
+/* Carousel container */
+.scene .carousel.keen-slider {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+/* Slide */
+.carousel__cell {
+  position: absolute;
+  width: 240px;
+  height: 200px;
+  left: 10px;
+  border-radius: 16px;
+
+  /* IMPORTANT: hide back-facing slides */
+  backface-visibility: hidden;
+
+  /* IMPORTANT: hidden by default */
+  opacity: 0;
+
+  /* Smooth rotation + fade */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Visible slides (front + sides) */
+.carousel__cell.is-visible {
+  opacity: 1;
+}
+
+/* Front slide emphasis */
+.carousel__cell.is-front {
+  transform: scale(1.08);
+}

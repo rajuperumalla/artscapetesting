@@ -1,0 +1,44 @@
+@use "../structure/colors.scss" as *;
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: $bg-surface;
+    color: $gold-primary;
+    border: none;
+    cursor: pointer;
+
+    // Default Lifted State
+    box-shadow:
+        4px 4px 8px $shadow-dark,
+        -4px -4px 8px $shadow-light;
+    transition: all 0.3s ease;
+
+    .icon {
+        font-size: 1.2rem;
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    &:hover {
+        color: $gold-light;
+        transform: scale(1.1);
+        box-shadow:
+            6px 6px 12px $shadow-dark,
+            -6px -6px 12px $shadow-light;
+
+        .icon {
+            transform: rotate(15deg);
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow:
+            inset 3px 3px 6px $shadow-dark,
+            inset -3px -3px 6px $shadow-light;
+    }
+}

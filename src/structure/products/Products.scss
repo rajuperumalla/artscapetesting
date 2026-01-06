@@ -1,97 +1,119 @@
-@use "../colors.scss" as color;
+@use "../neumorphism.scss" as *;
 
-.products{
-    padding: 0 1.5rem 4rem;
-    background-color: #0a0c10;
-    .artscape-collection{
-        padding: 1.8rem 0;
+.products-page {
+    padding-top: 120px;
+    min-height: 100vh;
+    background: $bg-body;
+}
+
+.products {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5% 4rem;
+
+    .artscape-collection {
         text-align: center;
-        font-size: 2.3rem;
-        font-weight: 600;
-        color: color.$primary;
-
+        font-size: 3.5rem;
+        color: $gold-primary;
+        margin-bottom: 5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        // Embossed Gold Text
+        text-shadow:
+            3px 3px 6px rgba(0, 0, 0, 0.8),
+            -1px -1px 2px rgba(255, 255, 255, 0.1);
     }
-    .products-container{
+
+    .products-container {
         display: grid;
-        justify-items: center;
-        gap: 2rem;
-        @media (min-width: 576px) {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        @media (min-width: 880px) {grid-template-columns: repeat(3, minmax(0, 1fr));}
-        @media (min-width: 1280px) {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem; // Decreased gap for better fit
+
+        @media (max-width: 1200px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .product{
-            width: auto;
+        @media (max-width: 650px) {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .product {
+            display: block; // Link
+            // Lifted Card
+            background: $bg-surface;
+            padding: 1.5rem; // Decreased padding
+            border-radius: 30px; // Slightly smaller radius
             text-align: center;
-            border: 1px solid #d1bc9f51;
-            border-radius: 1rem;
-            background-color: black;
-            // min-width: 80%;
+            transition: transform 0.3s ease; // Smoother transition
+            box-sizing: border-box;
 
-            .product-content{
-                padding: 1rem;
-                .product-image{
-                    height: 15rem;
-                    border-radius: 0.5rem;
-                }
-                
-                .product-text{
-                    width: 100%;
-                    .table-title{
-                        margin: 0.7rem 0;
-                        color: color.$primary;
-                        font-size: 1.2rem;
-                        font-weight: 500;
-                    }
-                    del{
-                        font-size: 1.1rem;
-                        margin-right: 0.5rem;
-                        color: red;
-                    }
-                    span{
-                        font-size: 1.2rem;
-                        color: color.$primary;
-                    }
-                }
-                
-            }
-        
-            .add-to-cart {
-                display: block; 
-                padding: 1rem 1.2rem;
-                position: relative;
-                border-radius: 0 0 1rem 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                overflow: hidden; // keep animation inside
-                color: color.$primary;
-                // color: rgba(255, 255, 255, 0.744);
-                background-color: rgb(0, 0, 0);
-                z-index: 1;
-                text-align: center;
-                border-top: 1px solid #d1bc9f51;
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            box-shadow:
+                15px 15px 30px $shadow-dark,
+                -15px -15px 30px $shadow-light;
 
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(37, 35, 35, 0.75) ;// hover background color
-                    clip-path: circle(0% at 50% 50%);
-                    transition: clip-path cubic-bezier(0, 0.50, 1, 1.1) 0.5s;
-                    z-index: -1;
+            .product-content {
+
+                .image-wrapper {
+                    // Pressed Well for the Image
+                    background: $bg-surface;
+                    border-radius: 30px;
+                    padding: 2rem;
+                    margin-bottom: 2rem;
+                    aspect-ratio: 1/1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+
+                    box-shadow:
+                        inset 8px 8px 16px $shadow-dark,
+                        inset -8px -8px 16px $shadow-light;
+
+                    .product-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        transition: transform 0.5s ease;
+                        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+                    }
                 }
 
-                &:hover::after {
-                    clip-path: circle(110% at 50% 50%);
+                .product-text {
+                    .table-title {
+                        font-size: 1.5rem;
+                        color: $text-main;
+                        font-weight: 600;
+                        letter-spacing: 0.05em;
+                    }
                 }
             }
 
+            &:hover {
+                transform: translateY(-10px);
+                // Enhance shadows on hover
+                box-shadow:
+                    20px 20px 40px $shadow-dark,
+                    -20px -20px 40px $shadow-light;
+
+                .product-image {
+                    transform: scale(1.1) rotate(2deg);
+                }
+
+                .table-title {
+                    color: $gold-primary; // Lit up gold on hover
+                }
+            }
+
+            &:active {
+                transform: translateY(-2px);
+                box-shadow:
+                    5px 5px 10px $shadow-dark,
+                    -5px -5px 10px $shadow-light;
+            }
         }
     }
 }
