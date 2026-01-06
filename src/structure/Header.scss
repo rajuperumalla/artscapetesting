@@ -35,6 +35,12 @@
         transition: transform 0.3s ease;
       }
 
+      @media (max-width: 480px) {
+        img {
+          height: 35px; // Smaller logo on mobile
+        }
+      }
+
       &:hover img {
         transform: scale(1.05);
       }
@@ -115,8 +121,8 @@
         }
 
         @media (max-width: 480px) {
-          padding: 0.7rem 1.4rem;
-          font-size: 0.8rem;
+          padding: 0.6rem 1rem; // Smaller button padding
+          font-size: 0.75rem; // Smaller font size
         }
       }
 
